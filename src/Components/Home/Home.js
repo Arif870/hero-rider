@@ -8,7 +8,9 @@ const Home = () => {
       <div className="row">
         <div className="col">
           <h2 className="text-center mt-5 fs-1">Welcome to hero riders</h2>
-          <img className="mx-auto d-block" src={logo} alt="" />
+          <Link to="/">
+            <img className="mx-auto d-block" src={logo} alt="" />
+          </Link>
 
           <div className="mx-auto d-block text-center">
             <Link to="/rider">

@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Home from "../Home/Home";
 
 const Rider = () => {
+  const [registerData, setRegisterData] = useState({});
+  const handleOnBlur = e => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newRegister = { ...registerData };
+    newRegister[field] = value;
+    setRegisterData(newRegister);
+  };
+  const registerSubmit = e => {
+    e.preventDefault();
+    const rideRegister = { ...registerData };
+    setRegisterData(rideRegister);
+    fetch("", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(rideRegister),
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
+    console.log("clicked", registerData);
+  };
+
   return (
     <>
       <Home />
@@ -10,59 +34,89 @@ const Rider = () => {
           Join as a <span className="text-danger fw-normal">Rider</span>{" "}
         </p>
         <hr />
-        <form className="w-75 mx-auto">
+        <form onSubmit={registerSubmit} className="w-75 mx-auto">
           <div className="mb-3">
-            <label for="fullname" className="form-label">
+            <label htmlFor="fullname" className="form-label">
               Full Name
             </label>
             <input
+              onBlur={handleOnBlur}
               type="text"
+              name="fullName"
               className="form-control"
               id="fullname"
               aria-describedby="emailHelp"
             />
           </div>
           <div className="mb-3">
-            <label for="exampleInputEmail1" className="form-label">
+            <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
             </label>
             <input
+              onBlur={handleOnBlur}
               type="email"
+              name="email"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             />
           </div>
           <div className="mb-3">
-            <label for="age" className="form-label">
+            <label htmlFor="age" className="form-label">
               Age
             </label>
-            <input type="number" className="form-control" id="age" />
+            <input
+              onBlur={handleOnBlur}
+              type="number"
+              name="age"
+              className="form-control"
+              id="age"
+            />
           </div>
           <div className="mb-3">
-            <label for="address" className="form-label">
+            <label htmlFor="address" className="form-label">
               Address
             </label>
-            <input type="text" className="form-control" id="address" />
+            <input
+              onBlur={handleOnBlur}
+              type="text"
+              name="address"
+              className="form-control"
+              id="address"
+            />
           </div>
           <div className="mb-3">
-            <label for="phone" className="form-label">
+            <label htmlFor="phone" className="form-label">
               Phone
             </label>
-            <input type="text" className="form-control" id="phone" />
+            <input
+              onBlur={handleOnBlur}
+              type="text"
+              name="phone"
+              className="form-control"
+              id="phone"
+            />
           </div>
           <div className="mb-3">
-            <label for="area" className="form-label">
+            <label htmlFor="area" className="form-label">
               Area
             </label>
-            <input type="text" className="form-control" id="area" />
+            <input
+              onBlur={handleOnBlur}
+              type="text"
+              name="area"
+              className="form-control"
+              id="area"
+            />
           </div>
           <div className="mb-3">
-            <label for="carinfo" className="form-label">
+            <label htmlFor="carinfo" className="form-label">
               Car Info
             </label>
             <input
+              onBlur={handleOnBlur}
               type="text"
+              name="carInfo"
               className="form-control"
               id="carinfo"
               placeholder="name | model and number Plate"
@@ -70,48 +124,72 @@ const Rider = () => {
           </div>
           <label className="form-label">Vehicle type</label>
           <select
+            onBlur={handleOnBlur}
             className="form-select mb-3"
+            name="vehicleType"
             aria-label="Default select example"
           >
-            <option selected>Select vehicle type</option>
-            <option value="1">Car</option>
-            <option value="2">Bike</option>
+            <option defaultValue={""}>Select vehicle type</option>
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
           </select>
           <div className="mb-3">
-            <label for="dlp" className="form-label">
+            <label htmlFor="dlp" className="form-label">
               Driving licence picture
             </label>
-            <input type="file" className="form-control" id="dlp" />
+            <input
+              onBlur={handleOnBlur}
+              type="text"
+              name="drivingLicencePic"
+              className="form-control"
+              id="dlp"
+            />
           </div>
 
           <div className="mb-3">
-            <label for="nip" className="form-label">
+            <label htmlFor="nip" className="form-label">
               NID picture
             </label>
-            <input type="file" className="form-control" id="nip" />
+            <input
+              onBlur={handleOnBlur}
+              type="file"
+              name="nidPic"
+              className="form-control"
+              id="nip"
+            />
           </div>
           <div className="mb-3">
-            <label for="pp" className="form-label">
+            <label htmlFor="pp" className="form-label">
               Profile picture
             </label>
-            <input type="file" className="form-control" id="pp" />
+            <input
+              onBlur={handleOnBlur}
+              type="file"
+              name="profilePic"
+              className="form-control"
+              id="pp"
+            />
           </div>
           <div className="mb-3">
-            <label for="exampleInputPassword1" className="form-label">
+            <label htmlFor="exampleInputPassword1" className="form-label">
               Password
             </label>
             <input
+              onBlur={handleOnBlur}
               type="password"
+              name="password"
               className="form-control"
               id="exampleInputPassword1"
             />
           </div>
           <div className="mb-3">
-            <label for="exampleInputPassword2" className="form-label">
+            <label htmlFor="exampleInputPassword2" className="form-label">
               Confirm Password
             </label>
             <input
+              onBlur={handleOnBlur}
               type="password"
+              name="confirmPassword"
               className="form-control"
               id="exampleInputPassword2"
             />
