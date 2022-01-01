@@ -19,12 +19,12 @@ const LearnerProfile = () => {
           <p className="fs-3 text-center mt-5">Choose your package</p>
           <div className="d-flex justify-content-between g-4 mt-5">
             {" "}
-            <Link to="#">
+            <Link to="/payforcar">
               <h4 className="border p-4 rounded shadow bg-primary text-light">
                 Car Driving 200$
               </h4>{" "}
             </Link>
-            <Link to="#">
+            <Link to="/payforcar">
               <h4 className="border p-4 rounded shadow bg-success text-light">
                 Bike Driving 100$
               </h4>{" "}

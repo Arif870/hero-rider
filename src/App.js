@@ -5,6 +5,7 @@ import AdminLogin from "./Components/AdminLogin/AdminLogin";
 import Home from "./Components/Home/Home";
 import Learner from "./Components/Learner/Learner";
 import LearnerProfile from "./Components/LearnerProfile/LearnerProfile";
+import PayforCar from "./Components/Payforcar/PayforCar";
 import Rider from "./Components/Rider/Rider";
 import RiderProfile from "./Components/RiderProfile/RiderProfile";
 import ContextProvider from "./Context/ContextProvider";
@@ -22,6 +23,7 @@ function App() {
             <Route path="/learnerprofile" element={<LearnerProfile />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/adminlogin" element={<AdminLogin />} />
+            <Route path="/payforcar" element={<PayforCar />} />
           </Routes>
         </BrowserRouter>
       </ContextProvider>
