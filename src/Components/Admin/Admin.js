@@ -12,14 +12,14 @@ const Admin = () => {
 
   //// rider user effect
   useEffect(() => {
-    const uri = `http://localhost:9000/rideUser`;
+    const uri = `https://stormy-bayou-37155.herokuapp.com/rideUser`;
     fetch(uri)
       .then(res => res.json())
       .then(data => setRidersInfo(data));
   }, []);
   /// learner user effect
   useEffect(() => {
-    const uri = `http://localhost:9000/learnerUser`;
+    const uri = `https://stormy-bayou-37155.herokuapp.com/learnerUser`;
     fetch(uri)
       .then(res => res.json())
       .then(data => setLearnerInfo(data));
@@ -28,7 +28,7 @@ const Admin = () => {
   const rideUserDelete = id => {
     const procced = window.confirm("Are you sure to delete this user ?");
     if (procced) {
-      const url = `http://localhost:9000/rideUser/${id}`;
+      const url = `https://stormy-bayou-37155.herokuapp.com/rideUser/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -48,7 +48,7 @@ const Admin = () => {
   const learnerUserDelete = id => {
     const procced = window.confirm("Are you sure to delete this user ?");
     if (procced) {
-      const url = `http://localhost:9000/learnerUser/${id}`;
+      const url = `https://stormy-bayou-37155.herokuapp.com/learnerUser/${id}`;
       fetch(url, {
         method: "DELETE",
       })

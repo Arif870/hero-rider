@@ -23,7 +23,7 @@ const Learner = () => {
     } else {
       const learnerRegister = { ...registerData };
       setRegisterData(learnerRegister);
-      fetch("http://localhost:9000/learnerUser", {
+      fetch("https://stormy-bayou-37155.herokuapp.com/learnerUser", {
         method: "POST",
         headers: {
           "content-type": "application/json",

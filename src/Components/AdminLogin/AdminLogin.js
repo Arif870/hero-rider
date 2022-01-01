@@ -7,7 +7,7 @@ const AdminLogin = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:9000/admin")
+    fetch("https://stormy-bayou-37155.herokuapp.com/admin")
       .then(res => res.json())
       .then(data => setAdmin(data));
   }, []);

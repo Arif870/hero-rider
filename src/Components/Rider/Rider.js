@@ -25,7 +25,7 @@ const Rider = () => {
     } else {
       const rideRegister = { ...registerData };
       setRegisterData(rideRegister);
-      fetch("http://localhost:9000/rideUser", {
+      fetch("https://stormy-bayou-37155.herokuapp.com/rideUser", {
         method: "POST",
         headers: {
           "content-type": "application/json",
