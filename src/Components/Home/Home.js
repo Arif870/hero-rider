@@ -8,6 +8,13 @@ const Home = () => {
       <div className="row">
         <div className="col">
           <h2 className="text-center mt-5 fs-1">Welcome to hero riders</h2>
+
+          <Link to="/adminlogin">
+            <button className="btn btn-outline-primary mx-auto d-block">
+              Admin login
+            </button>
+          </Link>
+
           <Link to="/">
             <img className="mx-auto d-block" src={logo} alt="" />
           </Link>

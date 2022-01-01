@@ -1,5 +1,3 @@
-import React from "react";
-
 const RiderProfile = () => {
   return (
     <>
@@ -11,7 +9,8 @@ const RiderProfile = () => {
             src="https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg"
             alt="profile"
           />
-          <h1>Welcome Arifuzzaman</h1>
+          <h1>Sample Profile page</h1>
+
           <p>You have joined as a Rider.</p>
         </div>
         <div className="mt-5">

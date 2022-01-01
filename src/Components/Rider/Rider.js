@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Home from "../Home/Home";
 import { useAuth } from "../../Hooks/useAuth";
 
@@ -37,10 +37,11 @@ const Rider = () => {
           if (data.insertedId) {
             alert("successfully inserted");
             e.target.reset();
-            navigate("/riderprofile");
-            registerUser(rideRegister);
+            navigate(`/riderprofile`);
           }
         });
+      registerUser(rideRegister.email, rideRegister.password);
+      console.log("mail", rideRegister.email);
     }
   };
 

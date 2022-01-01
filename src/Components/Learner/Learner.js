@@ -39,7 +39,6 @@ const Learner = () => {
           }
         });
     }
-    console.log(registerData);
     e.preventDefault();
   };
   return (
