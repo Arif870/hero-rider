@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import FirebaseInitialize from "../Firebase/Firebase.init";
 
@@ -16,10 +18,25 @@ export const useFirebase = () => {
   ///////////////////////Register
   const registerUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
+      .then(result => {
         // Signed in
-        const user = userCredential.user;
+        const user = result;
+        setUser(user);
         // ...
+        updateProfile(auth.currentUser, {
+          displayName: "Jane Q. User",
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        })
+          .then(() => {
+            // Profile updated!
+            // ...
+          })
+          .catch(error => {
+            // An error occurred
+            // ...
+          });
+
+        console.log(email, password);
       })
       .catch(error => {
         setError(error.message);
@@ -27,7 +44,15 @@ export const useFirebase = () => {
       });
   };
 
-  //
+  // state changed
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        const uid = user.uid;
+      } else {
+      }
+    });
+  }, []);
   /////////////////////// Login
   const loginUser = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)

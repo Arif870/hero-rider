@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Home from "../Home/Home";
+import { useAuth } from "../../Hooks/useAuth";
 
 const Rider = () => {
+  const { registerUser } = useAuth();
   const [registerData, setRegisterData] = useState({});
+
+  let navigate = useNavigate();
+
   const handleOnBlur = e => {
     const field = e.target.name;
     const value = e.target.value;
@@ -12,18 +18,30 @@ const Rider = () => {
   };
   const registerSubmit = e => {
     e.preventDefault();
-    const rideRegister = { ...registerData };
-    setRegisterData(rideRegister);
-    fetch("", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(rideRegister),
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
-    console.log("clicked", registerData);
+    const pass1 = document.getElementById("password1").value;
+    const pass2 = document.getElementById("password2").value;
+    if (pass1 !== pass2) {
+      alert("password didnot matched !!");
+    } else {
+      const rideRegister = { ...registerData };
+      setRegisterData(rideRegister);
+      fetch("http://localhost:9000/rideUser", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(rideRegister),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.insertedId) {
+            alert("successfully inserted");
+            e.target.reset();
+            navigate("/riderprofile");
+            registerUser(rideRegister);
+          }
+        });
+    }
   };
 
   return (
@@ -45,7 +63,6 @@ const Rider = () => {
               name="fullName"
               className="form-control"
               id="fullname"
-              aria-describedby="emailHelp"
             />
           </div>
           <div className="mb-3">
@@ -57,8 +74,6 @@ const Rider = () => {
               type="email"
               name="email"
               className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
             />
           </div>
           <div className="mb-3">
@@ -140,6 +155,7 @@ const Rider = () => {
             <input
               onBlur={handleOnBlur}
               type="text"
+              placeholder="Image Link"
               name="drivingLicencePic"
               className="form-control"
               id="dlp"
@@ -152,7 +168,8 @@ const Rider = () => {
             </label>
             <input
               onBlur={handleOnBlur}
-              type="file"
+              type="text"
+              placeholder="Image Link"
               name="nidPic"
               className="form-control"
               id="nip"
@@ -164,7 +181,8 @@ const Rider = () => {
             </label>
             <input
               onBlur={handleOnBlur}
-              type="file"
+              type="text"
+              placeholder="Image Link"
               name="profilePic"
               className="form-control"
               id="pp"
@@ -179,7 +197,7 @@ const Rider = () => {
               type="password"
               name="password"
               className="form-control"
-              id="exampleInputPassword1"
+              id="password1"
             />
           </div>
           <div className="mb-3">
@@ -191,12 +209,12 @@ const Rider = () => {
               type="password"
               name="confirmPassword"
               className="form-control"
-              id="exampleInputPassword2"
+              id="password2"
             />
           </div>
 
           <button type="submit" className="btn btn-danger mb-4">
-            Join
+            Join as rider
           </button>
         </form>
       </div>
