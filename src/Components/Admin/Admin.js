@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
-import { Filter } from "../Filter/Filter";
 import "./Admin.css";
 
 const Admin = () => {
@@ -311,6 +310,7 @@ const Admin = () => {
                   return val;
                 }
               })
+
               .map(singleLearner => (
                 <tr key={singleLearner._id}>
                   <td>
